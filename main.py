@@ -48,6 +48,7 @@ def show_result():
             for character in characters:
                 character_color_map[character] = color
 
+
         # 构建带颜色的HTML文本
         colored_results = []
         for result in draw_result:
