@@ -1,0 +1,1 @@
+可下载[简易妮姬抽卡工具0.2.exe](output%2F%BC%F2%D2%D7%C4%DD%BC%A7%B3%E9%BF%A8%B9%A4%BE%DF0.2.exe)直接使用
