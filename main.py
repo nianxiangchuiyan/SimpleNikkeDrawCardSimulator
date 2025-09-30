@@ -23,12 +23,43 @@ def update():
     text_box2.setText(str(ticket))
     text_box.setText(str(gem))
     print(draw_result)
+
+
 def show_result():
     if draw_result:
+        # 从test模块获取角色池信息
+        from test import CharacterPool
+        character_pool = CharacterPool()
+
+        # 定义各类型的颜色映射
+        type_colors = {
+            "pilgrim": "black",
+            "gold": "gold",
+            "up": "red",
+            "purple": "purple",
+            "blue": "blue"
+        }
+
+        # 创建角色到颜色的映射
+        character_color_map = {}
+        for type_name in character_pool.get_types():
+            characters = character_pool.get_characters(type_name)
+            color = type_colors.get(type_name, "black")
+            for character in characters:
+                character_color_map[character] = color
+
+        # 构建带颜色的HTML文本
+        colored_results = []
+        for result in draw_result:
+            color = character_color_map.get(result, "black")  # 默认黑色
+            colored_results.append(f'<span style="color:{color};">{result}</span>')
+
         msg = QMessageBox()
         msg.setWindowTitle("抽卡结果")
-        msg.setText("\n".join(draw_result))
+        msg.setTextFormat(1)  # Qt.RichText
+        msg.setText("<br>".join(colored_results))
         msg.exec_()
+
 
 def on_click_1():
     global draw_result, ticket, gem
